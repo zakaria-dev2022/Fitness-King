@@ -10,20 +10,23 @@ using System.Windows.Forms;
 
 namespace Fitness_King
 {
-    public partial class FormClient : Form
+    public partial class FormCoach : Form
     {
-        
-        public FormClient()
+        public FormCoach()
         {
             InitializeComponent();
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
         void remplir()
         {
             Utils.CloseConnection();
-            DataTable dataTable = Utils.ObtenirDonnees("SELECT c.id as N°Client, c.nom,c.prenom,c.cin,c.tel,c.email, c.abonnement from client c "); // Inclure l'abonnement
+            DataTable dataTable = Utils.ObtenirDonnees("SELECT c.id as N°Coach, c.nom,c.prenom,c.cin,c.tel,c.email, c.type from Coach c "); // Inclure l'abonnement
             tableau.DataSource = dataTable;
-           // tableau.Columns["ph_cin"].Visible = false;
+            // tableau.Columns["ph_cin"].Visible = false;
         }
 
         void nouveau()
@@ -32,25 +35,41 @@ namespace Fitness_King
             txtn.Text = "";
             txtp.Text = "";
             txtnc.Text = "";
-           // txtnp.Text = ""; // Effacer le permis
+            // txtnp.Text = ""; // Effacer le permis
             txtt.Text = "";
             txte.Text = "";
             txta.Text = "";
             //txtmp.Text = ""; // Effacer le mot de passe
-           
+
             txtn.Focus();
         }
-        private void FormClient_Load(object sender, EventArgs e)
+        private void FormCoach_Load(object sender, EventArgs e)
         {
             remplir();
+        }
+
+        private void modifier_Click(object sender, EventArgs e)
+        {
+            if (txtn.Text != "" && txtp.Text != "" && txtnc.Text != "" && txtt.Text != "" && txte.Text != "" && txta.Text != "")
+            {
+                //abonnement = "votre_abonnement"; // Ajout de l'abonnement
+                Coach Coach = new Coach(txtn.Text, txtp.Text, txtnc.Text, txtt.Text, txte.Text, txta.Text);
+                int id = int.Parse(txtid.Text);
+                Coach.ModifierCoach(Coach, id);
+                nouveau();
+                remplir();
+                ajouter.Enabled = true;
+                modifier.Enabled = false;
+                supprimer.Enabled = false;
+            }
         }
 
         private void ajouter_Click(object sender, EventArgs e)
         {
             Utils.CloseConnection();
             //abonnement = "votre_abonnement"; // Ajout de l'abonnement
-            Client client = new Client(txtn.Text, txtp.Text, txtnc.Text, txtt.Text, txte.Text, txta.Text);
-            Client.ajouterclient(client);
+            Coach Coach = new Coach(txtn.Text, txtp.Text, txtnc.Text, txtt.Text, txte.Text, txta.Text);
+            Coach.ajouterCoach(Coach);
             nouveau();
             remplir();
             ajouter.Enabled = true;
@@ -58,16 +77,15 @@ namespace Fitness_King
             supprimer.Enabled = false;
         }
 
-        private void modifier_Click(object sender, EventArgs e)
+        private void supprimer_Click(object sender, EventArgs e)
         {
-            if (txtn.Text != "" && txtp.Text != "" && txtnc.Text != "" && txtt.Text != "" && txte.Text != "" &&  txta.Text != "")
+            Utils.CloseConnection();
+            if (MessageBox.Show("Voulez-vous suprimer Ce Coach?", "Zakaria Location", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //abonnement = "votre_abonnement"; // Ajout de l'abonnement
-                Client client = new Client(txtn.Text, txtp.Text, txtnc.Text,  txtt.Text, txte.Text,  txta.Text);
-                int id = int.Parse(txtid.Text);
-                Client.ModifierClient(client, id);
-                nouveau();
+                Utils.SuprimerDonner("Coach", txtid.Text);
+                MessageBox.Show("Supression Avec Success", "Zakaria Location");
                 remplir();
+                nouveau();
                 ajouter.Enabled = true;
                 modifier.Enabled = false;
                 supprimer.Enabled = false;
@@ -79,21 +97,7 @@ namespace Fitness_King
             Dashboard dashboard = new Dashboard();
             this.Hide();
             dashboard.Show();
-        }
 
-        private void supprimer_Click(object sender, EventArgs e)
-        {
-            Utils.CloseConnection();
-            if (MessageBox.Show("Voulez-vous suprimer Ce Client?", "Zakaria Location", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Utils.SuprimerDonner("client", txtid.Text);
-                MessageBox.Show("Supression Avec Success", "Zakaria Location");
-                remplir();
-                nouveau();
-                ajouter.Enabled = true;
-                modifier.Enabled = false;
-                supprimer.Enabled = false;
-            }
         }
 
         private void tableau_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -102,7 +106,7 @@ namespace Fitness_King
             if (e.RowIndex >= 0 && e.RowIndex < n)
             {
                 DataGridViewRow row = tableau.Rows[e.RowIndex];
-                txtid.Text = row.Cells["N°Client"].Value.ToString();
+                txtid.Text = row.Cells["N°Coach"].Value.ToString();
                 txtn.Text = row.Cells["nom"].Value.ToString();
                 txtp.Text = row.Cells["prenom"].Value.ToString();
                 txtnc.Text = row.Cells["cin"].Value.ToString();
@@ -110,9 +114,9 @@ namespace Fitness_King
                 txtt.Text = row.Cells["tel"].Value.ToString();
                 txte.Text = row.Cells["email"].Value.ToString();
                 //txtmp.Text = row.Cells["mot_de_passe"].Value.ToString();
-                txta.Text = row.Cells["abonnement"].Value.ToString();
-              // abonnement = row.Cells["abonnement"].Value.ToString(); // Afficher l'abonnement
-                //ph_cin.Image = Image.FromFile(@"C:\laragon\www\zakaria location\assets\img\clients\" + lb_cin.Text);
+                txta.Text = row.Cells["type"].Value.ToString();
+                // abonnement = row.Cells["abonnement"].Value.ToString(); // Afficher l'abonnement
+                //ph_cin.Image = Image.FromFile(@"C:\laragon\www\zakaria location\assets\img\Coachs\" + lb_cin.Text);
                 ajouter.Enabled = false;
                 modifier.Enabled = true;
                 supprimer.Enabled = true;

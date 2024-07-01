@@ -43,3 +43,4 @@ C:\Users\Zakaria\source\repos\Xamarin\Fitness King\obj\Debug\Fitness King.csproj
 C:\Users\Zakaria\source\repos\Xamarin\Fitness King\obj\Debug\Fitness King.csproj.CopyComplete
 C:\Users\Zakaria\source\repos\Xamarin\Fitness King\obj\Debug\Fitness King.exe
 C:\Users\Zakaria\source\repos\Xamarin\Fitness King\obj\Debug\Fitness King.pdb
+C:\Users\Zakaria\source\repos\Xamarin\Fitness King\obj\Debug\Fitness_King.FormCoach.resources
