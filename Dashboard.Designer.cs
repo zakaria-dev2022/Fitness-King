@@ -54,8 +54,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lb_na = new System.Windows.Forms.Label();
             this.panel9.SuspendLayout();
@@ -72,7 +70,6 @@
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -193,9 +190,9 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(3, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(162, 19);
+            this.label7.Size = new System.Drawing.Size(158, 19);
             this.label7.TabIndex = 1;
-            this.label7.Text = "Nombre Des Voiture";
+            this.label7.Text = "Nombre Des Coach";
             // 
             // panel11
             // 
@@ -237,6 +234,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // label5
             // 
@@ -248,6 +246,7 @@
             this.label5.Size = new System.Drawing.Size(191, 28);
             this.label5.TabIndex = 4;
             this.label5.Text = "Se Déconnecter";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // panel4
             // 
@@ -290,6 +289,7 @@
             this.label2.Size = new System.Drawing.Size(238, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Gestion Des Clients";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel6
             // 
@@ -310,6 +310,7 @@
             this.label3.Size = new System.Drawing.Size(275, 28);
             this.label3.TabIndex = 2;
             this.label3.Text = "Gestion D\'Abonnement";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // panel7
             // 
@@ -330,6 +331,7 @@
             this.label4.Size = new System.Drawing.Size(232, 28);
             this.label4.TabIndex = 3;
             this.label4.Text = "Gestion Des Profils";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // panel8
             // 
@@ -340,30 +342,9 @@
             this.panel8.Size = new System.Drawing.Size(345, 74);
             this.panel8.TabIndex = 5;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(47, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(257, 28);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Gestion Des Message";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 460);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 74);
-            this.panel1.TabIndex = 6;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Teal;
-            this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.panel6);
@@ -400,6 +381,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Dashboard";
             this.Text = "Dashboard";
+            this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -422,8 +404,6 @@
             this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -457,8 +437,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lb_na;
     }

@@ -37,7 +37,7 @@ namespace Fitness_King
                 {
                     Utils.OpenConnection();
 
-                    string query = "UPDATE admin SET nom = @nom, prenom = @prenom,login = @email, mot_de_passe = @mot_de_passe,nom_app=@nom_app,logo = @logo WHERE id =1";
+                    string query = "UPDATE admin SET nom = @nom, prenom = @prenom,email = @email, mot_de_passe = @mot_de_passe,nom_app=@nom_app,logo = @logo WHERE id =1";
 
 
                     MySqlCommand command = new MySqlCommand(query, Utils.cnx);

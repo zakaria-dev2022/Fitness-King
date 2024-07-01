@@ -16,7 +16,7 @@ namespace Fitness_King
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCoach());
+            Application.Run(new Login());
         }
     }
 }

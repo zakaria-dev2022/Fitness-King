@@ -106,6 +106,37 @@ namespace Fitness_King
 
         }
 
+        public static void NomApplication(Label label)
+        {
+            try
+            {
+                OpenConnection(); // Ouvrir la connexion à la base de données
+
+                string query = "SELECT nom_app FROM admin WHERE id = @Id"; // Requête SQL pour récupérer le chemin de l'image de la table admin
+                MySqlCommand command = new MySqlCommand(query, cnx);
+                command.Parameters.AddWithValue("@Id", 1); // Remplacer 1 par l'ID de l'admin dont vous voulez afficher l'image
+
+                // Récupérer le chemin de l'image à partir de la base de données
+                string nom_app = (string)command.ExecuteScalar();
+
+                label.Text = nom_app;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de l'exécution de la requête : " + ex.Message);
+                MessageBox.Show("Erreur lors de l'exécution de la requête : " + ex.Message, "Zakaria Location");
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                    cnx.Close(); // Fermer la connexion à la base de données après utilisation
+            }
+
+
+        }
+
+
         public static DataTable ObtenirDonnees(string query)
         {
             DataTable dataTable = new DataTable();
@@ -157,8 +188,35 @@ namespace Fitness_King
                 if (cnx.State == System.Data.ConnectionState.Open)
                     cnx.Close(); // Fermer la connexion à la base de données après utilisation
             }
-
-
         }
-    }
+
+            public static void AfficherImageAdmin(PictureBox pictureBox)
+            {
+                try
+                {
+                    OpenConnection(); // Ouvrir la connexion à la base de données
+
+                    string query = "SELECT logo FROM admin WHERE id = @Id"; // Requête SQL pour récupérer le chemin de l'image de la table admin
+                    MySqlCommand command = new MySqlCommand(query, cnx);
+                    command.Parameters.AddWithValue("@Id", 1); // Remplacer 1 par l'ID de l'admin dont vous voulez afficher l'image
+
+                    // Récupérer le chemin de l'image à partir de la base de données
+                    string imagePath = (string)command.ExecuteScalar();
+
+                    pictureBox.Load(@"C:\Users\Zakaria\source\repos\Xamarin\Fitness King\bin\Debug\img\" + imagePath);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erreur lors de l'exécution de la requête : " + ex.Message);
+                    MessageBox.Show("Erreur lors de l'exécution de la requête : " + ex.Message, "Zakaria Location");
+                }
+                finally
+                {
+                    if (cnx.State == System.Data.ConnectionState.Open)
+                        cnx.Close(); // Fermer la connexion à la base de données après utilisation
+                }
+            }
+        }
+    
 }
